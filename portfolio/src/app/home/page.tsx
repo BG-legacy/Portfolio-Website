@@ -679,16 +679,16 @@ export default function HomePage() {
           {/* About Text */}
           <div className="space-y-5 self-start">
             <p className="text-base md:text-lg">
-              Hi, I'm Bernard Ginn Jr., a passionate and reliable software developer with a strong foundation in computer science and a genuine curiosity for how things work. What started as an interest in technology quickly turned into a purpose-driven career where I aim to build smart, meaningful solutions that make an impact.
+              Hi, I&apos;m Bernard Ginn Jr., a passionate and reliable software developer with a strong foundation in computer science and a genuine curiosity for how things work. What started as an interest in technology quickly turned into a purpose-driven career where I aim to build smart, meaningful solutions that make an impact.
             </p>
             <p className="text-base md:text-lg">
               I have a deep appreciation for all areas of software development—from full-stack and backend architecture to intuitive frontend design and the ever-evolving world of AI and machine learning. I take pride in writing clean, efficient code and creating user experiences that are both functional and thoughtful.
             </p>
             <p className="text-base md:text-lg">
-              Beyond the technical side, I care deeply about people and community. Whether it's leading student tech clubs, organizing networking events, or simply sharing knowledge, I enjoy creating spaces where others feel supported and inspired to grow. I believe in staying grounded, being consistent, and always showing up—both for my team and for myself.
+              Beyond the technical side, I care deeply about people and community. Whether it&apos;s leading student tech clubs, organizing networking events, or simply sharing knowledge, I enjoy creating spaces where others feel supported and inspired to grow. I believe in staying grounded, being consistent, and always showing up—both for my team and for myself.
             </p>
             <p className="text-base md:text-lg">
-              When I'm not coding, you'll probably find me journaling, working out, or watching anime. These things keep me balanced, creative, and always ready for the next challenge. I bring energy, integrity, and a constant drive to learn to everything I do, and I'm excited about what the future holds.
+              When I&apos;m not coding, you&apos;ll probably find me journaling, working out, or watching anime. These things keep me balanced, creative, and always ready for the next challenge. I bring energy, integrity, and a constant drive to learn to everything I do, and I&apos;m excited about what the future holds.
             </p>
           </div>
         </div>
