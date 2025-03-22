@@ -1,0 +1,12 @@
+{
+  "build": {
+    "env": {
+      "YARN_FLAGS": "--no-ignore-optional"
+    }
+  },
+  "github": {
+    "silent": true
+  },
+  "installCommand": "yarn install --frozen-lockfile",
+  "buildCommand": "yarn run build"
+} 
