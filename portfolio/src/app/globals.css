@@ -47,7 +47,6 @@ body {
   color: #4bd5ee;
   opacity: 0;
   text-align: center;
-  font-size: 2rem;
   animation: fadeInOut 6s ease-in-out;
 }
 
@@ -67,12 +66,18 @@ body {
   position: relative;
   top: 99999px;
   width: 70%;
-  font-size: 2vw;
-  font-weight: bold;
   text-align: center;
   transform-origin: 50% 100%;
   transform: rotateX(25deg) translateZ(0);
   animation: crawl 60s linear;
+  animation-delay: 6s;
+}
+
+/* Mobile version of the crawl */
+.crawl-mobile {
+  width: 85%;
+  transform: rotateX(20deg) translateZ(0);
+  animation: crawl-mobile 45s linear;
   animation-delay: 6s;
 }
 
@@ -96,13 +101,27 @@ body {
   background-color: transparent;
   color: #FFE81F;
   border: 2px solid #FFE81F;
-  padding: 10px 20px;
   font-family: 'Star Jedi', Arial, sans-serif;
-  font-size: 1.2rem;
   cursor: pointer;
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out 0s forwards;
   z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: rgba(255, 232, 31, 0.1);
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Touch highlight for mobile */
+@media (max-width: 768px) {
+  .continue-button:active {
+    background-color: rgba(255, 232, 31, 0.2);
+  }
+  
+  body {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @keyframes fadeInOut {
@@ -118,6 +137,12 @@ body {
 @keyframes crawl {
   0% { top: 100%; transform: translateZ(0) rotateX(20deg); }
   100% { top: -7500px; transform: translateZ(0) rotateX(25deg); }
+}
+
+/* Mobile crawl animation */
+@keyframes crawl-mobile {
+  0% { top: 100%; transform: translateZ(0) rotateX(15deg); }
+  100% { top: -5000px; transform: translateZ(0) rotateX(20deg); }
 }
 
 /* Berny Bot animations */
@@ -159,5 +184,23 @@ body {
   
   .bg-gradient-radial {
     background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .project-card {
+    max-width: 100%;
+  }
+  
+  .experience-card {
+    max-width: 100%;
+  }
+}
+
+/* Fix iOS height issue */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
   }
 }

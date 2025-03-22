@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,9 +12,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#000000",
+};
+
 export const metadata: Metadata = {
-  title: "Bernard Ginn Jr. | Star Wars Portfolio",
-  description: "Bernard Ginn Jr.'s portfolio with a Star Wars theme",
+  title: "Bernard Ginn Jr. | Portfolio",
+  description: "Bernard Ginn Jr.'s personal portfolio showcasing projects and skills",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Bernard Ginn Jr. Portfolio"
+  },
+  formatDetection: {
+    telephone: false
+  }
 };
 
 export default function RootLayout({
