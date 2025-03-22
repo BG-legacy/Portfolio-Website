@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Star Jedi';
+  src: url('https://db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #000000;
+  --foreground: #FFE81F;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.intro-text {
+  color: #4bd5ee;
+  opacity: 0;
+  text-align: center;
+  font-size: 2rem;
+  animation: fadeInOut 6s ease-in-out;
+}
+
+.crawl-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.crawl {
+  position: relative;
+  top: 99999px;
+  width: 70%;
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+  transform-origin: 50% 100%;
+  transform: rotateX(25deg) translateZ(0);
+  animation: crawl 60s linear;
+  animation-delay: 6s;
+}
+
+.crawl-content {
+  color: #FFE81F;
+  will-change: transform;
+  transform: scale(1);
+}
+
+.crawl-title {
+  font-size: 3vw;
+  line-height: 1.3;
+  margin-bottom: 50px;
+}
+
+.continue-button {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  color: #FFE81F;
+  border: 2px solid #FFE81F;
+  padding: 10px 20px;
+  font-family: 'Star Jedi', Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out 0s forwards;
+  z-index: 100;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes crawl {
+  0% { top: 100%; transform: translateZ(0) rotateX(20deg); }
+  100% { top: -7500px; transform: translateZ(0) rotateX(25deg); }
+}
+
+/* Berny Bot animations */
+@keyframes scanline {
+  0% { top: -5%; opacity: 0.8; }
+  100% { top: 105%; opacity: 0.5; }
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  75%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.1; }
+  50% { opacity: 1; }
+  100% { opacity: 0.1; }
+}
+
+/* Tailwind custom animations */
+@layer utilities {
+  .animate-scanline {
+    animation: scanline 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}
