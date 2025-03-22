@@ -990,10 +990,6 @@ export default function HomePage() {
                       <span className="text-gray-300 text-sm text-center">GitHub</span>
                     </div>
                     <div className="flex flex-col items-center">
-                      <div className="h-12 w-12 relative mb-2">
-                        <Image src="/logos/cursor.jpeg" alt="Cursor" fill className="object-contain" />
-                      </div>
-                      <span className="text-gray-300 text-sm text-center">Cursor</span>
                     </div>
                   </div>
                 </div>
