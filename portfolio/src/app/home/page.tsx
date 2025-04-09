@@ -426,15 +426,15 @@ const experiences: Experience[] = [
   },
   // Apprenticeship (ends May 2025)
   {
-    title: "Software Developer Apprentice",
+    title: "Software Engineer Apprentice",
     company: "Propel2Excel",
     logo: "/companies/propel2excel.png",
     period: "Nov. 2024 – May 2025",
-    description: "Selected from a highly competitive pool of applicants (3% acceptance rate) based on problem-solving abilities and technical potential.",
+    description: "Selected from a highly competitive pool (3% acceptance rate) for advanced problem-solving and technical acumen.",
     responsibilities: [
-      "Developed and implemented frontend components using Wix and React.js to enhance user experience",
+      "Engineered and refined frontend components using Wix and React.js, enhancing both user interface and overall site functionality",
+      "Debugged and tested frontend features using JUnit, improving responsiveness and visual consistency across devices",
       "Collaborated with a cross-functional apprenticeship team to deliver high-quality solutions",
-      "Identified and resolved critical bugs and UI issues to improve site functionality",
       "Actively participated in knowledge-sharing sessions and technical discussions"
     ],
     achievements: [
