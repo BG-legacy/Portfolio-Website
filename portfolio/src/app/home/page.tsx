@@ -40,6 +40,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const isJobTracker = project.title === "Job Application Tracker Hub";
   const isFaceRecognition = project.title === "Face Recognition Security System";
   const isSkinCancer = project.title === "Skin Cancer Detection System";
+  const isChronoPal = project.title === "ChronoPal";
+  const isSchemeViz = project.title === "SchemeViz";
   
   // Get appropriate styling based on project
   const getProjectStyle = () => {
@@ -133,6 +135,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
         buttonBorder: 'border-cyan-500 text-cyan-300 hover:bg-cyan-700/30',
         tagBg: 'bg-cyan-900/30 text-cyan-200',
       };
+    } else if (isChronoPal) {
+      return {
+        border: 'border-pink-500',
+        background: 'bg-gradient-to-br from-purple-900/90 via-pink-900/90 to-yellow-900/90',
+        title: 'text-pink-300',
+        buttonBg: 'bg-pink-600 hover:bg-pink-500',
+        buttonBorder: 'border-pink-500 text-pink-300 hover:bg-pink-700/30',
+        tagBg: 'bg-pink-900/30 text-pink-200',
+      };
+    } else if (isSchemeViz) {
+      return {
+        border: 'border-emerald-500',
+        background: 'bg-gradient-to-br from-emerald-900/90 via-teal-900/90 to-cyan-900/90',
+        title: 'text-emerald-300',
+        buttonBg: 'bg-emerald-600 hover:bg-emerald-500',
+        buttonBorder: 'border-emerald-500 text-emerald-300 hover:bg-emerald-700/30',
+        tagBg: 'bg-emerald-900/30 text-emerald-200',
+      };
     } else {
       return {
         border: 'border-yellow-500',
@@ -153,13 +173,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
         className="cursor-pointer" 
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : ''}`}>
+        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : isChronoPal ? 'bg-gradient-to-br from-purple-900 via-pink-900 to-yellow-900' : isSchemeViz ? 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900' : ''}`}>
           {project.image ? (
             <Image 
               src={project.image} 
               alt={project.title}
               fill
-              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer ? 'object-contain p-4' : 'object-cover'}`}
+              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer || isChronoPal || isSchemeViz ? 'object-contain p-4' : 'object-cover'}`}
             />
           ) : (
             <div className="h-full bg-yellow-900/30 flex items-center justify-center">
@@ -229,6 +249,18 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 <span className="text-cyan-200">Detection System</span>
                 <span className="ml-1 text-cyan-100 text-sm">🔍</span>
               </span>
+            ) : isChronoPal ? (
+              <span>
+                <span className="text-pink-300">Chrono</span>
+                <span className="text-yellow-300">Pal</span>
+                <span className="ml-1 text-purple-300 text-sm">🎮</span>
+              </span>
+            ) : isSchemeViz ? (
+              <span>
+                <span className="text-emerald-300">Scheme</span>
+                <span className="text-cyan-300">Viz</span>
+                <span className="ml-1 text-teal-300 text-sm">📊</span>
+              </span>
             ) : (
               project.title
             )}
@@ -296,6 +328,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 // Projects data
 const projects: Project[] = [
+  {
+    title: "SchemeViz",
+    description: "An interactive tool that brings Scheme-like language parsing to life! Features real-time code analysis, multiple visualization modes, and beautiful interactive representations of Abstract Syntax Trees.",
+    image: "/projects/schemeviz.png",
+    technologies: ["React.js", "Tailwind CSS", "Framer Motion", "ReactFlow", "Create React App", "TypeScript"],
+    challenges: "Implementing real-time parsing and visualization of Scheme code, creating smooth animations for AST transformations, and ensuring accurate error detection and reporting.",
+    githubLink: "https://github.com/BG-legacy/SchemeViz",
+    websiteLink: "https://scheme-viz.vercel.app/"
+  },
+  {
+    title: "ChronoPal",
+    description: "A digital companion that's part nostalgia explosion, part cutting-edge tech wizardry! A 90s-inspired AI-powered app that brings retro gaming vibes to modern technology.",
+    image: "/projects/chronopal.png",
+    technologies: ["React 19", "TypeScript", "Tailwind CSS", "FastAPI", "MongoDB", "Python 3", "OpenAI", "Pytest"],
+    challenges: "Creating a seamless blend of retro aesthetics with modern functionality, implementing secure authentication, and developing an engaging AI companion that feels both nostalgic and cutting-edge.",
+    githubLink: "https://github.com/BG-legacy/ChronoPal",
+    websiteLink: "https://chrono-pal.vercel.app/"
+  },
   {
     title: "CougarWise",
     description: "Your intelligent financial companion built for college students. Track expenses, create budgets, set goals, and get personalized financial advice all in one place.",
@@ -1181,8 +1231,7 @@ export default function HomePage() {
               <h3 className="text-xl text-blue-400">For Recruiters & Opportunities</h3>
               <div className="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20,3H4C1.8,3,0,4.8,0,7v10c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V7C24,4.8,22.2,3,20,3z M22,17c0,1.1-0.9,2-2,2H4 c-1.1,0-2-0.9-2-2V7c0-1.1,0.9-2,2-2h16c1.1,0,2,0.9,2,2V17z"/>
-                  <path d="M12,11.7L22,7v2L12,13.7L2,9v-2L12,11.7z"/>
+                  <path d="M20,3H4C1.8,3,0,4.8,0,7v10c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V7C24,4.8,22.2,3,20,3z M8,19H5v-9h3zM6.5,8.25A1.75,1.75,0,1,1,8.3,6.5,1.78,1.78,0,0,1,6.5,8.25ZM19,19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74,1.74,0,0,0,13,14.19a.66.66,0,0,0,0,.14V19h-3v-9h2.9v1.3a3.11,3.11,0,0,1,2.7-1.4c1.55,0,3.36.86,3.36,3.66Z"/>
                 </svg>
                 <a href="mailto:bginnjr20@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors">
                   bginnjr20@gmail.com
@@ -1190,7 +1239,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+                  <path d="M20.5,2h-17A1.5,1.5,0,0,0,2,3.5v17A1.5,1.5,0,0,0,3.5,22h17a1.5,1.5,0,0,0,1.5-1.5v-17A1.5,1.5,0,0,0,20.5,2ZM8,19H5V9h3Zm-1.5-3.25a1.75,1.75,0,1,1,1.75-1.75A1.78,1.78,0,0,1,6.5,15.75ZM19,19h-3V14.74c0-1.42-.6-1.93-1.38-1.93a1.74,1.74,0,0,0-1.38,1.93V19h-3V9h2.9v1.3a3.11,3.11,0,0,1,2.7-1.4c1.55,0,3.36.86,3.36,3.66Z"/>
                 </svg>
                 <a href="https://www.linkedin.com/in/bernard-ginn-jr/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 transition-colors">
                 linkedin.com/in/bernard-ginn-jr/
@@ -1205,7 +1254,7 @@ export default function HomePage() {
                 className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold py-3 px-6 rounded-md transition-transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  <path d="M12,0c-6.626,0-12,5.373-12,12,0,5.302,3.438,9.8,8.207,11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729,1.205.084,1.839,1.237,1.839,1.237,1.07,1.834,2.807,1.304,3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931,0-1.311.469-2.381,1.236-3.221-.124-.303-.535-1.524.117-3.176,0,0,1.008-.322,3.301,1.23.957-.266,1.983-.399,3.003-.404,1.02.005,2.047.138,3.006.404,2.291-1.552,3.297-1.23,3.297-1.23.653,1.653.242,2.874.118,3.176.77.84,1.235,1.911,1.235,3.221,0,4.609-2.807,5.624-5.479,5.921.43.372.823,1.102.823,2.222v3.293c0,.319.192.694.801.576,4.765-1.589,8.199-6.086,8.199-11.386,0-6.627-5.373-12-12-12z"/>
                 </svg>
                 <span>Check out my GitHub</span>
               </a>
