@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 
 // Project type definition
@@ -42,6 +42,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const isSkinCancer = project.title === "Skin Cancer Detection System";
   const isChronoPal = project.title === "ChronoPal";
   const isSchemeViz = project.title === "SchemeViz";
+  const isArmourUp = project.title === "ArmourUp";
+  const isBGFitness = project.title === "BGFitness";
+  const isQuickScan = project.title === "QuickScan";
   
   // Get appropriate styling based on project
   const getProjectStyle = () => {
@@ -53,6 +56,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
         buttonBg: 'bg-red-600 hover:bg-red-500',
         buttonBorder: 'border-red-600 text-white hover:bg-red-600/20',
         tagBg: 'bg-red-900/30 text-white',
+      };
+    } else if (isArmourUp) {
+      return {
+        border: 'border-yellow-500',
+        background: 'bg-gradient-to-br from-black/95 to-yellow-900/20',
+        title: 'text-yellow-400',
+        buttonBg: 'bg-yellow-600 hover:bg-yellow-500',
+        buttonBorder: 'border-yellow-500 text-yellow-400 hover:bg-yellow-600/20',
+        tagBg: 'bg-yellow-900/30 text-yellow-300',
       };
     } else if (isOtakuConcerts) {
       return {
@@ -153,6 +165,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
         buttonBorder: 'border-emerald-500 text-emerald-300 hover:bg-emerald-700/30',
         tagBg: 'bg-emerald-900/30 text-emerald-200',
       };
+    } else if (isBGFitness) {
+      return {
+        border: 'border-yellow-500',
+        background: 'bg-gradient-to-br from-black/95 to-yellow-900/20',
+        title: 'text-yellow-400',
+        buttonBg: 'bg-yellow-600 hover:bg-yellow-500',
+        buttonBorder: 'border-yellow-500 text-yellow-400 hover:bg-yellow-600/20',
+        tagBg: 'bg-yellow-900/30 text-yellow-300',
+      };
+    } else if (isQuickScan) {
+      return {
+        border: 'border-blue-500',
+        background: 'bg-gradient-to-br from-gray-900/95 to-blue-900/20',
+        title: 'text-blue-400',
+        buttonBg: 'bg-blue-600 hover:bg-blue-500',
+        buttonBorder: 'border-blue-500 text-blue-400 hover:bg-blue-600/20',
+        tagBg: 'bg-blue-900/30 text-blue-300',
+      };
     } else {
       return {
         border: 'border-yellow-500',
@@ -173,13 +203,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
         className="cursor-pointer" 
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : isChronoPal ? 'bg-gradient-to-br from-purple-900 via-pink-900 to-yellow-900' : isSchemeViz ? 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900' : ''}`}>
+        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : isChronoPal ? 'bg-gradient-to-br from-purple-900 via-pink-900 to-yellow-900' : isSchemeViz ? 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900' : isArmourUp ? 'bg-gradient-to-br from-slate-900 to-cyan-900' : isBGFitness ? 'bg-gradient-to-br from-green-900 to-blue-900' : isQuickScan ? 'bg-gradient-to-br from-gray-900 to-blue-900' : ''}`}>
           {project.image ? (
             <Image 
               src={project.image} 
               alt={project.title}
               fill
-              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer || isChronoPal || isSchemeViz ? 'object-contain p-4' : 'object-cover'}`}
+              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer || isChronoPal || isSchemeViz || isArmourUp || isBGFitness || isQuickScan ? 'object-contain p-4' : 'object-cover'}`}
             />
           ) : (
             <div className="h-full bg-yellow-900/30 flex items-center justify-center">
@@ -261,6 +291,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 <span className="text-cyan-300">Viz</span>
                 <span className="ml-1 text-teal-300 text-sm">📊</span>
               </span>
+            ) : isArmourUp ? (
+              <span>
+                <span className="text-yellow-400">Armour</span>
+                <span className="text-yellow-500">Up</span>
+                <span className="ml-1 text-yellow-300 text-sm">🛡️</span>
+              </span>
+            ) : isBGFitness ? (
+              <span>
+                <span className="text-yellow-400">BG</span>
+                <span className="text-yellow-300">Fitness</span>
+                <span className="ml-1 text-yellow-200 text-sm">💪</span>
+              </span>
+            ) : isQuickScan ? (
+              <span>
+                <span className="text-blue-400">Quick</span>
+                <span className="text-blue-300">Scan</span>
+                <span className="ml-1 text-blue-200 text-sm">📱</span>
+              </span>
             ) : (
               project.title
             )}
@@ -328,6 +376,32 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 // Projects data
 const projects: Project[] = [
+  {
+    title: "QuickScan",
+    description: "A modern document scanning and AI-powered analysis app built with Rust backend and Swift frontend. Features secure authentication, real-time document scanning, and OpenAI-powered document analysis.",
+    image: "/projects/quickscan.png",
+    technologies: ["Rust", "Axum", "Swift", "SwiftUI", "OpenAI API", "JWT", "Vision Kit", "Combine"],
+    challenges: "Implementing secure authentication with multiple methods, integrating iOS camera capabilities with Vision Kit, and creating a seamless document analysis pipeline with OpenAI.",
+    githubLink: "https://github.com/BG-legacy/QuickScan",
+  },
+  {
+    title: "BGFitness",
+    description: "A modern fitness application that helps users track workouts, manage fitness goals, and stay motivated. Features AI-powered workout generation, TDEE calculation, and detailed progress tracking.",
+    image: "/projects/bgfitness.png",
+    technologies: ["React 19.1.0", "Node.js", "Express.js 4.18.2", "OpenAI API", "TailwindCSS", "Jest", "React Testing Library", "PDFKit"],
+    challenges: "Implementing AI-powered workout generation, optimizing API response caching and streaming, ensuring cross-browser compatibility and responsive design across all devices.",
+    githubLink: "https://github.com/BG-legacy/BGFitness",
+    websiteLink: "https://bg-fitness-seven.vercel.app"
+  },
+  {
+    title: "ArmourUp",
+    description: "A robust, scalable full-stack web application built with Go backend and Next.js frontend, featuring containerized deployment, PostgreSQL integration, and structured logging.",
+    image: "/projects/armourup.png",
+    technologies: ["Go", "Gin", "Next.js 15", "React 19", "TypeScript", "PostgreSQL", "Docker", "Tailwind CSS 4", "Zap", "Viper"],
+    challenges: "Implementing a scalable microservices architecture, managing containerized deployment with Docker, and ensuring robust database migrations and logging systems.",
+    githubLink: "https://github.com/BG-legacy/armourup",
+    websiteLink: "https://armour-up.vercel.app"
+  },
   {
     title: "SchemeViz",
     description: "An interactive tool that brings Scheme-like language parsing to life! Features real-time code analysis, multiple visualization modes, and beautiful interactive representations of Abstract Syntax Trees.",
@@ -430,7 +504,7 @@ const projects: Project[] = [
     technologies: ["Python", "TensorFlow", "Flask", "Deep Learning", "HAM10000 Dataset", "HTML/CSS", "JavaScript"],
     challenges: "Training accurate deep learning models on medical imagery, providing meaningful confidence scores and explanations for predictions, and creating an intuitive interface for medical professionals.",
     githubLink: "https://github.com/BG-legacy/Ai--powered-skin-detection",
-  }
+  },
 ];
 
 // Experience data
@@ -521,9 +595,59 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const projectsContainerRef = useRef<HTMLDivElement>(null);
   
+  // Generate static star positions to avoid hydration mismatches
+  const starPositions = useMemo(() => {
+    const regularStars = [];
+    const brightStars = [];
+    
+    // Create deterministic star positions using a seed-based approach
+    for (let i = 0; i < 200; i++) {
+      // Simple pseudo-random function with seed for consistent results
+      const seed = i * 0.618; // Using golden ratio for better distribution
+      const x = ((seed * 1000) % 100);
+      const y = ((seed * 1234) % 100);
+      const size = 1 + ((seed * 567) % 2);
+      const opacity = 0.3 + ((seed * 890) % 0.7);
+      const duration = 2 + ((seed * 432) % 5);
+      const delay = (seed * 321) % 5;
+      
+      regularStars.push({
+        top: `${y}%`,
+        left: `${x}%`,
+        width: `${size}px`,
+        height: `${size}px`,
+        opacity,
+        duration: `${duration}s`,
+        delay: `${delay}s`
+      });
+    }
+    
+    for (let i = 0; i < 15; i++) {
+      const seed = i * 0.618 + 0.5;
+      const x = ((seed * 1000) % 100);
+      const y = ((seed * 1234) % 100);
+      const size = 2 + ((seed * 567) % 3);
+      const duration = 3 + ((seed * 432) % 7);
+      const delay = (seed * 321) % 5;
+      
+      brightStars.push({
+        top: `${y}%`,
+        left: `${x}%`,
+        width: `${size}px`,
+        height: `${size}px`,
+        duration: `${duration}s`,
+        delay: `${delay}s`
+      });
+    }
+    
+    return { regularStars, brightStars };
+  }, []);
+  
   useEffect(() => {
+    setIsMounted(true);
     setIsVisible(true);
     
     // Add custom styles for hover effects
@@ -632,52 +756,48 @@ export default function HomePage() {
         color: 'white'
       }}>
       
-      {/* Star background for entire page */}
-      <div className="fixed inset-0 overflow-hidden z-0">
-        {/* Regular stars */}
-        {[...Array(200)].map((_, i) => {
-          const size = Math.random() * 2 + 1;
-          return (
+      {/* Star background for entire page - only render after mounting */}
+      {isMounted && (
+        <div className="fixed inset-0 overflow-hidden z-0">
+          {/* Regular stars */}
+          {starPositions.regularStars.map((star, i) => (
             <div 
               key={i}
               className="absolute bg-white rounded-full"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${size}px`,
-                height: `${size}px`,
-                opacity: Math.random(),
+                top: star.top,
+                left: star.left,
+                width: star.width,
+                height: star.height,
+                opacity: star.opacity,
                 animationName: 'twinkle',
-                animationDuration: `${Math.random() * 5 + 2}s`,
+                animationDuration: star.duration,
                 animationIterationCount: 'infinite',
-                animationDelay: `${Math.random() * 5}s`
+                animationDelay: star.delay
               }}
             />
-          );
-        })}
-        
-        {/* A few brighter stars */}
-        {[...Array(15)].map((_, i) => {
-          const size = Math.random() * 3 + 2;
-          return (
+          ))}
+          
+          {/* A few brighter stars */}
+          {starPositions.brightStars.map((star, i) => (
             <div 
               key={`bright-${i}`}
               className="absolute bg-white rounded-full"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${size}px`,
-                height: `${size}px`,
+                top: star.top,
+                left: star.left,
+                width: star.width,
+                height: star.height,
                 boxShadow: '0 0 10px 2px rgba(255, 255, 255, 0.7)',
                 animationName: 'twinkle',
-                animationDuration: `${Math.random() * 7 + 3}s`,
+                animationDuration: star.duration,
                 animationIterationCount: 'infinite',
-                animationDelay: `${Math.random() * 5}s`
+                animationDelay: star.delay
               }}
             />
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Hero Section */}
       <section 
@@ -822,6 +942,24 @@ export default function HomePage() {
                         <Image src="/logos/sql.png" alt="SQL" fill className="object-contain" />
                       </div>
                       <span className="text-gray-300 text-sm text-center">SQL</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="h-12 w-12 relative mb-2">
+                        <Image src="/logos/go.png" alt="Go" fill className="object-contain" />
+                      </div>
+                      <span className="text-gray-300 text-sm text-center">Go</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="h-12 w-12 relative mb-2">
+                        <Image src="/logos/rust.png" alt="Rust" fill className="object-contain" />
+                      </div>
+                      <span className="text-gray-300 text-sm text-center">Rust</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="h-12 w-12 relative mb-2">
+                        <Image src="/logos/swift.png" alt="Swift" fill className="object-contain" />
+                      </div>
+                      <span className="text-gray-300 text-sm text-center">Swift</span>
                     </div>
                   </div>
                 </div>
@@ -1254,7 +1392,7 @@ export default function HomePage() {
                 className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold py-3 px-6 rounded-md transition-transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12,0c-6.626,0-12,5.373-12,12,0,5.302,3.438,9.8,8.207,11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729,1.205.084,1.839,1.237,1.839,1.237,1.07,1.834,2.807,1.304,3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931,0-1.311.469-2.381,1.236-3.221-.124-.303-.535-1.524.117-3.176,0,0,1.008-.322,3.301,1.23.957-.266,1.983-.399,3.003-.404,1.02.005,2.047.138,3.006.404,2.291-1.552,3.297-1.23,3.297-1.23.653,1.653.242,2.874.118,3.176.77.84,1.235,1.911,1.235,3.221,0,4.609-2.807,5.624-5.479,5.921.43.372.823,1.102.823,2.222v3.293c0,.319.192.694.801.576,4.765-1.589,8.199-6.086,8.199-11.386,0-6.627-5.373-12-12-12z"/>
+                  <path d="M12,0c-6.626,0-12,5.373-12,12,0,5.302,3.438,9.8,8.207,11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729,1.205.084,1.839,1.237,1.237,1.237,1.07,1.834,2.807,1.304,3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931,0-1.311.469-2.381,1.236-3.221-.124-.303-.535-1.524.117-3.176,0,0,1.008-.322,3.301,1.23.957-.266,1.983-.399,3.003-.404,1.02.005,2.047.138,3.006.404,2.291-1.552,3.297-1.23,3.297-1.23.653,1.653.242,2.874.118,3.176.77.84,1.235,1.911,1.235,3.221,0,4.609-2.807,5.624-5.479,5.921.43.372.823,1.102.823,2.222v3.293c0,.319.192.694.801.576,4.765-1.589,8.199-6.086,8.199-11.386,0-6.627-5.373-12-12-12z"/>
                 </svg>
                 <span>Check out my GitHub</span>
               </a>

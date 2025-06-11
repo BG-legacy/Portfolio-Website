@@ -8,19 +8,27 @@ const StarWarsCrawl = () => {
   const [showCrawl, setShowCrawl] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    // Set mounted to true on client
+    setIsMounted(true);
+    
     // Check if device is mobile
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+      }
     };
     
     // Initial check
     checkMobile();
     
     // Add resize listener
-    window.addEventListener('resize', checkMobile);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkMobile);
+    }
 
     // Start showing the crawl after the intro text fades out
     const introTimeout = setTimeout(() => {
@@ -36,9 +44,22 @@ const StarWarsCrawl = () => {
     return () => {
       clearTimeout(introTimeout);
       clearTimeout(buttonTimeout);
-      window.removeEventListener('resize', checkMobile);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', checkMobile);
+      }
     };
-  }, [isMobile]);
+  }, []);
+
+  // Update button timeout when isMobile changes
+  useEffect(() => {
+    if (isMounted && showCrawl && !showButton) {
+      const buttonTimeout = setTimeout(() => {
+        setShowButton(true);
+      }, isMobile ? 18000 : 25000);
+
+      return () => clearTimeout(buttonTimeout);
+    }
+  }, [isMobile, isMounted, showCrawl, showButton]);
 
   const handleContinue = () => {
     router.push('/home');
