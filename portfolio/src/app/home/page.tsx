@@ -45,6 +45,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const isArmourUp = project.title === "ArmourUp";
   const isBGFitness = project.title === "BGFitness";
   const isQuickScan = project.title === "QuickScan";
+  const isHabitChain = project.title === "HabitChain";
   
   // Get appropriate styling based on project
   const getProjectStyle = () => {
@@ -183,6 +184,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
         buttonBorder: 'border-blue-500 text-blue-400 hover:bg-blue-600/20',
         tagBg: 'bg-blue-900/30 text-blue-300',
       };
+    } else if (isHabitChain) {
+      return {
+        border: 'border-green-500',
+        background: 'bg-gradient-to-br from-green-900/90 to-emerald-900/90',
+        title: 'text-green-400',
+        buttonBg: 'bg-green-600 hover:bg-green-500',
+        buttonBorder: 'border-green-500 text-green-400 hover:bg-green-600/20',
+        tagBg: 'bg-green-900/30 text-green-300',
+      };
     } else {
       return {
         border: 'border-yellow-500',
@@ -203,13 +213,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
         className="cursor-pointer" 
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : isChronoPal ? 'bg-gradient-to-br from-purple-900 via-pink-900 to-yellow-900' : isSchemeViz ? 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900' : isArmourUp ? 'bg-gradient-to-br from-slate-900 to-cyan-900' : isBGFitness ? 'bg-gradient-to-br from-green-900 to-blue-900' : isQuickScan ? 'bg-gradient-to-br from-gray-900 to-blue-900' : ''}`}>
+        <div className={`h-48 relative ${isCougarWise ? 'bg-blue-900' : isOtakuConcerts ? 'bg-purple-900' : isDailyDose ? 'bg-amber-200' : isSentenceGenerator ? 'bg-indigo-900' : isThreadFlow ? 'bg-gray-900' : isFlavorMind ? 'bg-black' : isStellarUrl ? 'bg-purple-900' : isJobTracker ? 'bg-teal-900' : isFaceRecognition ? 'bg-gray-950' : isSkinCancer ? 'bg-blue-950' : isChronoPal ? 'bg-gradient-to-br from-purple-900 via-pink-900 to-yellow-900' : isSchemeViz ? 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900' : isArmourUp ? 'bg-gradient-to-br from-slate-900 to-cyan-900' : isBGFitness ? 'bg-gradient-to-br from-green-900 to-blue-900' : isQuickScan ? 'bg-gradient-to-br from-gray-900 to-blue-900' : isHabitChain ? 'bg-gradient-to-br from-green-900 to-emerald-900' : ''}`}>
           {project.image ? (
             <Image 
               src={project.image} 
               alt={project.title}
               fill
-              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer || isChronoPal || isSchemeViz || isArmourUp || isBGFitness || isQuickScan ? 'object-contain p-4' : 'object-cover'}`}
+              className={`${isCougarWise || isOtakuConcerts || isDailyDose || isSentenceGenerator || isThreadFlow || isFlavorMind || isStellarUrl || isJobTracker || isFaceRecognition || isSkinCancer || isChronoPal || isSchemeViz || isArmourUp || isBGFitness || isQuickScan || isHabitChain ? 'object-contain p-4' : 'object-cover'}`}
             />
           ) : (
             <div className="h-full bg-yellow-900/30 flex items-center justify-center">
@@ -309,6 +319,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 <span className="text-blue-300">Scan</span>
                 <span className="ml-1 text-blue-200 text-sm">📱</span>
               </span>
+            ) : isHabitChain ? (
+              <span>
+                <span className="text-green-400">Habit</span>
+                <span className="text-green-300">Chain</span>
+                <span className="ml-1 text-green-200 text-sm">⛓️</span>
+              </span>
             ) : (
               project.title
             )}
@@ -377,9 +393,18 @@ const ProjectCard = ({ project }: { project: Project }) => {
 // Projects data
 const projects: Project[] = [
   {
+    title: "HabitChain",
+    description: "A full-stack habit tracking app for 25+ users with React/Tailwind frontend, ASP.NET Core Web API backend, and PostgreSQL. Implemented JWT-secured authentication and analytics processing 30+ daily interactions. Empowered 30+ users with AI habit suggestions, boosting consistency and habit completion by 25–30%.",
+    image: "/projects/habitchain.png",
+    technologies: ["React.js", "Tailwind CSS", "ASP.NET Core", "PostgreSQL", "Entity Framework", "OpenAI API", "JWT Authentication", "Web API"],
+    challenges: "Implementing secure JWT authentication across React frontend and ASP.NET Core backend, designing efficient PostgreSQL schemas for habit tracking data, integrating OpenAI API for intelligent habit suggestions, and creating real-time analytics dashboard for user engagement metrics.",
+    githubLink: "https://github.com/BG-legacy/HabitChain",
+    websiteLink: "https://habit-chain.vercel.app/@portfolio/"
+  },
+  {
     title: "QuickScan",
     description: "A modern document scanning and AI-powered analysis app built with Rust backend and Swift frontend. Features secure authentication, real-time document scanning, and OpenAI-powered document analysis.",
-    image: "/projects/quickscan.png",
+    image: "/projects/QuickScan.png",
     technologies: ["Rust", "Axum", "Swift", "SwiftUI", "OpenAI API", "JWT", "Vision Kit", "Combine"],
     challenges: "Implementing secure authentication with multiple methods, integrating iOS camera capabilities with Vision Kit, and creating a seamless document analysis pipeline with OpenAI.",
     githubLink: "https://github.com/BG-legacy/QuickScan",
@@ -512,60 +537,63 @@ const experiences: Experience[] = [
   // Most recent experiences (Present)
   {
     title: "Student Startup Co-Founder",
-    company: "Daily Dose",
+    company: "Remote, USA",
     logo: "/companies/Daily-Dose.png",
-    period: "Jan. 2025 – Present",
-    description: "Co-founded an AI-powered journaling application focused on enhancing mental wellness through personalized insights and analytics.",
+    period: "Jan. 2025 – Aug. 2025",
+    description: "Co-founded an AI journaling app with mood tracking and smart prompts using Next.js, Node.js, and DynamoDB, deployed via Docker/Kubernetes with RESTful APIs and 100% test coverage in Jest and React Testing Library.",
     responsibilities: [
-      "Led development of core features including mood tracking and intelligent journaling prompts",
-      "Built the application using Next.js frontend and Node.js backend with AWS DynamoDB",
-      "Conduct weekly team meetings to strategize product development and marketing initiatives",
-      "Network with industry professionals and potential investors to promote startup growth"
+      "Co-founded an AI journaling app with mood tracking and smart prompts using Next.js, Node.js, and DynamoDB",
+      "Deployed application via Docker/Kubernetes with RESTful APIs and comprehensive testing infrastructure",
+      "Implemented 100% test coverage using Jest and React Testing Library for quality assurance",
+      "Load-tested full-stack platform for 100% uptime and fast AI response optimization"
     ],
     achievements: [
-      "Generated 1,700+ impressions and reached 800+ users in early launch phase",
-      "Drove 400+ video views with over 1 hour of total watch time, demonstrating strong user engagement",
-      "Collaborated with mental health professionals to ensure app effectiveness and clinical relevance",
-      "Successfully moved the application from concept to production with positive early user feedback"
+      "Successfully deployed at 4 universities with therapist support integration",
+      "Achieved 80% positive student feedback overall on outcomes and user experience", 
+      "Optimized database performance to handle under 1,000 users efficiently",
+      "Built scalable architecture with containerized deployment and comprehensive API testing"
     ]
   },
   {
     title: "Founder & President",
     company: "ColorStack CSU",
     logo: "/companies/colorstack.png",
-    period: "Jan. 2025 – Present",
+    period: "Jan. 2025 – May 2025",
     description: "Founded and led Columbus State University's first ColorStack chapter, dedicated to increasing the number of Black and Latinx students in tech through community building and career development.",
     responsibilities: [
-      "Established the organization's structure, mission, and strategic initiatives",
-      "Organized and facilitated career workshops, networking events, and technical training sessions",
-      "Developed and implemented mental health support programs for underrepresented tech students",
-      "Collaborated with university administration and industry partners to secure resources and opportunities"
+      "Founded and established CSU's first ColorStack chapter from the ground up",
+      "Organized and facilitated 7 career workshops and networking events for underrepresented students",
+      "Developed strategic partnerships with industry professionals and university administration",
+      "Implemented comprehensive support programs for Black and Latinx students in tech"
     ],
     achievements: [
       "Successfully launched CSU's first-ever ColorStack chapter, creating an inclusive tech community",
-      "Organized 7 career workshops connecting students with industry professionals and career opportunities",
-      "Initiated mental health initiatives specifically designed for underrepresented students in tech",
+      "Drove a 25% increase in internship placements for underrepresented students through targeted workshops",
+      "Achieved 40% membership growth through effective outreach and community building initiatives",
+      "Connected students with industry professionals and career opportunities through 7 networking events",
       "Built a supportive community that enhances retention and success of Black and Latinx CS students"
     ]
   },
-  // Apprenticeship (ends May 2025)
+  // Apprenticeship (ends Aug 2025)
   {
     title: "Software Engineer Apprentice",
     company: "Propel2Excel",
     logo: "/companies/propel2excel.png",
-    period: "Nov. 2024 – May 2025",
-    description: "Selected from a highly competitive pool (3% acceptance rate) for advanced problem-solving and technical acumen.",
+    period: "Oct. 2024 – Aug. 2025",
+    description: "Selected from a highly competitive pool (3% acceptance rate) for advanced problem-solving and technical acumen. Remote position focused on website optimization and modern development practices.",
     responsibilities: [
-      "Engineered and refined frontend components using Wix and React.js, enhancing both user interface and overall site functionality",
-      "Debugged and tested frontend features using JUnit, improving responsiveness and visual consistency across devices",
-      "Collaborated with a cross-functional apprenticeship team to deliver high-quality solutions",
-      "Actively participated in knowledge-sharing sessions and technical discussions"
+      "Optimized Propel2Excel website using React.js, TypeScript, Tailwind CSS, and Redux for enhanced performance",
+      "Implemented CI/CD-driven test automation with Jest and BrowserStack for comprehensive quality assurance",
+      "Developed responsive layouts and reusable components to improve cross-device user experience",
+      "Presented design improvements to CEO, business partners, and investors for strategic decision-making"
     ],
     achievements: [
-      "Contributed significantly to the backbone architecture of the company's Wix website",
-      "Received valuable mentorship from industry professionals, building a strong professional network",
-      "Developed essential job search and interview skills through targeted career development sessions",
-      "Applied debugging techniques that improved website stability and user experience"
+      "Improved website load times by 30% through performance optimization techniques",
+      "Increased mobile engagement by 20% through responsive design implementation",
+      "Reduced UI bugs by 40% and improved cross-browser consistency with automated testing",
+      "Achieved 25% faster development cycles through CI/CD implementation",
+      "Influenced 5 key product roadmap decisions through strategic design presentations",
+      "Contributed to a 20% increase in platform user base through improved user experience"
     ]
   },
   // Internship (2024)
@@ -574,18 +602,19 @@ const experiences: Experience[] = [
     company: "Cybernetics Global",
     logo: "/companies/cybernetics.png",
     period: "May 2024 – Sept. 2024",
-    description: "Contributed to MVP development as part of an Agile/Scrum team, gaining valuable industry experience while working on both frontend and backend components.",
+    description: "Led development of key features for a bail bond app MVP in Agile teams, focusing on user-bondsman connections and system performance optimization in Atlanta, GA.",
     responsibilities: [
-      "Collaborated with cross-functional teams including design, product, and engineering to deliver user-centric features",
-      "Developed responsive web interfaces using HTML, CSS, and JavaScript with focus on cross-device functionality",
-      "Deployed and maintained backend services using AWS EC2 and S3 infrastructure",
-      "Participated in regular code reviews and sprint planning sessions as part of the Agile workflow"
+      "Led development of 4 key features for a bail bond app MVP in Agile/Scrum teams",
+      "Built React.js interfaces with comprehensive QA testing for enhanced user experience",
+      "Deployed Node.js services on AWS infrastructure for scalable backend solutions",
+      "Conducted 6 product demos across the East Coast for technical investors and stakeholders"
     ],
     achievements: [
-      "Played a key role in helping the team reach MVP stage through timely feature delivery",
-      "Implemented quality assurance testing processes that improved overall product stability",
-      "Enhanced application performance by optimizing backend services and streamlining storage solutions",
-      "Gained valuable industry experience working alongside both experienced professionals and fellow students"
+      "Enabled 30% faster user-bondsman connections through optimized feature development",
+      "Boosted user satisfaction by 18% through improved interface design and functionality",
+      "Improved load times by 25% and reduced bugs by 30% through React.js optimization and QA testing",
+      "Boosted overall system performance by 20% through AWS Node.js service deployment",
+      "Successfully demonstrated product capabilities to technical investors across multiple East Coast locations"
     ]
   },
   // Remove the placeholder positions that don't represent real experience
